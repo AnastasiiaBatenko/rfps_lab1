@@ -1,0 +1,11 @@
+.founders {
+    transition: transform 0.3s ease; /* плавний перехід */
+}
+
+    .founders:hover {
+        transform: translateX(2%); /* зміщення на 2% вправо */
+    }
+
+a:link {
+    color: darkorange; /* темно-помаранчевий для ще не відвіданих */
+}
