@@ -1,38 +1,106 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Butterfly Tech Start-up - Home</title>
-</head>
-<body style="background-image: url('bg.jpg');
-             background-size: cover;
-             background-attachment: fixed;
-             background-position: center;
-             margin: 0;
-             font-family: Arial, sans-serif;">
+    <style>
+        body {
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        header {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+        }
+
+            header div {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+            }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        main section {
+            margin: 0;
+            padding: 20px;
+            border: 1px solid transparent;
+        }
+
+        aside {
+            outline: none;
+            margin: 20px;
+            transition: transform 0.3s ease;
+            padding: 15px;
+        }
+
+            aside:hover {
+                transform: translateX(2%);
+            }
+
+        /* Контакти */
+        #contacts p {
+            margin: 5px 0;
+        }
+
+        /* Підсвічування при виділенні */
+        ::selection {
+            background: yellow;
+            color: black;
+        }
+
+        /* Додаткове підсилення */
+        .boosted {
+            font-size: 110%;
+            background-color: orange;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
         <!-- Лого + назва -->
-        <div style="display: flex; align-items: center; gap: 10px;">
+        <div>
             <img src="butterfly.jpg" alt="Logo" width="50">
             <h1 style="margin: 0;">Butterfly Tech Start-up</h1>
         </div>
+
         <!-- Навігація -->
         <nav>
-            <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
+            <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="about.html">About Us</a></li>
             </ul>
         </nav>
-        <!-- Кнопки у правому верхньому куті -->
-        <div style="display: flex; gap: 10px;">
+
+        <!-- Кнопки -->
+        <div style="display: flex; gap: 10px; margin-left: 20px;">
             <button onclick="alert('Redirect to profile');">My Profile</button>
             <button onclick="alert('Redirect to sign up');">Sign Up</button>
         </div>
     </header>
-
 
     <main>
         <section id="about">
@@ -46,6 +114,11 @@
                 The main goal of our Tech Start-up is to create innovative digital solutions
                 that simplify everyday tasks and improve the quality of life.
                 We focus on modern web technologies, mobile applications, and user-friendly interfaces.
+            </p>
+
+            <!-- Hi-tech emoji content -->
+            <p style="font-size: 1.2em; text-align: center;">
+                🚀💻🔬🌐🤖 Welcome to the hi-tech world of Butterfly Start-up! ⚡
             </p>
 
             <h3>Key Objectives</h3>
@@ -119,18 +192,32 @@
         </aside>
 
         <h2>Contact Us</h2>
-        <p>If you have any questions or want to cooperate with us, feel free to contact:</p>
-
-        <ul>
-            <li><strong>Email:</strong> butterfly@techstartup.com</li>
-            <li><strong>Phone:</strong> +380-93-488-61-38</li>
-            <li><strong>Address:</strong> Palladina Akademika 7/60, Kyiv, Ukraine</li>
-        </ul>
+        <div id="contacts">
+            <p><b>Email:</b> <span class="selectable">butterfly@techstartup.com</span></p>
+            <p><b>Phone:</b> <span class="selectable">+380-93-488-61-38</span></p>
+            <p><b>Address:</b> <span class="selectable">Palladina Akademika 7/60, Kyiv, Ukraine</span></p>
+        </div>
     </main>
 
-
     <footer>
-        <p>&copy; 2025 Tech Start-up. All rights reserved.</p>
+        <p>© 2025 Tech Start-up. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener("mouseup", function () {
+            let selection = window.getSelection();
+            if (!selection.isCollapsed) {
+                let selectedText = selection.toString();
+                document.querySelectorAll(".selectable").forEach(span => {
+                    if (selectedText.includes(span.textContent)) {
+                        setTimeout(() => {
+                            span.classList.add("boosted");
+                        }, 2000);
+                    }
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
